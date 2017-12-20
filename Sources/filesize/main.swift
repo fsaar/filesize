@@ -4,6 +4,11 @@
 import Cocoa
 import Foundation
 
+enum Result : Error {
+    case invalidFormat
+    case invalidPath
+}
+
 enum Option : String {
     case swift
     case objc
@@ -41,28 +46,36 @@ enum Option : String {
     }
 }
 
-func parseCommandLine(arguments : [String]) -> (Int?,Option?) {
-    guard arguments.count >= 2 else {
-        return (nil,.help)
+func parseCommandLine(arguments : [String]) -> (URL?,Int?,Option?) {
+    guard arguments.count >= 4 else {
+        return (nil,nil,.help)
     }
-    guard let limitOption = Option(rawValue: arguments[1]), limitOption == .limit else {
-        return (nil,.help)
+    guard let limitOption = Option(rawValue: arguments[2]), limitOption == .limit else {
+        return (nil,nil,.help)
     }
-    guard let limit = Int(arguments[2]) else {
-        return (nil,.help)
+    guard let limit = Int(arguments[3]) else {
+        return (nil,nil,.help)
     }
-    guard arguments.count > 2, let fileTypeOption = Option(rawValue: arguments[3]), Set<Option>([.swift,.objc]).contains(fileTypeOption) else {
-        return (limit,nil)
+    let path = arguments[1]
+    let isRelativePath = path.hasPrefix(".") || path.hasPrefix("..")
+    let relativePath = isRelativePath ? URL(fileURLWithPath: FileManager.default.currentDirectoryPath) : nil
+    let url = URL(fileURLWithPath: path, relativeTo: relativePath)
+    var isDirectory = ObjCBool(false)
+    guard FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory),isDirectory.boolValue else {
+        return (nil,nil,.help)
     }
-    return (limit,fileTypeOption)
+    guard arguments.count > 4, let fileTypeOption = Option(rawValue: arguments[4]), Set<Option>([.swift,.objc]).contains(fileTypeOption) else {
+        return (url,limit,nil)
+    }
+    return (url,limit,fileTypeOption)
 
 }
-
-let (limit,option) = parseCommandLine(arguments: CommandLine.arguments)
-guard option != .help, let limit = limit else {
+FileManager.default.changeCurrentDirectoryPath("/Users/fsaar/Dropbox/Programs/filesize")
+let (url,limit,option) = parseCommandLine(arguments: CommandLine.arguments)
+guard option != .help, let limit = limit,let url = url else {
     print("""
 filesize: Tool to list files that have more than <limit> number of lines
-filezie --limit <number> --<Options>
+filesize <path> --limit <number> --<Options>
 Options:
     --swift: consider only swift files
     --objc: consider only objc files
@@ -72,6 +85,6 @@ Options:
 }
 
 
-let parser = DirectoryParser(with: "/Users/fsaar/Dropbox/Programs/tflapp")
-parser?.parse(limit: limit, filetype: option?.directoryParserOption ?? .all)
+let parser = DirectoryParser(with: url)
+parser.parse(limit: limit, filetype: option?.directoryParserOption ?? .all)
 

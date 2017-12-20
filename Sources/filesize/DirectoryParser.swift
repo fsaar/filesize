@@ -48,10 +48,7 @@ class DirectoryParser {
     let baseURL : URL
     
     
-    init?(with path: String) {
-        guard let url = URL(string:path) else {
-            return nil
-        }
+    init(with url: URL) {
         baseURL = url
     }
     
@@ -70,7 +67,9 @@ class DirectoryParser {
             return (lineCount ?? 0) >= limit
         }
         for (url,lineCount) in filteredCounts {
-            print("\(url):\(lineCount!)")
+            if let lc = lineCount {
+                print("# \(lc)\t: \(url.path)")
+            }
         }
     }
 }
