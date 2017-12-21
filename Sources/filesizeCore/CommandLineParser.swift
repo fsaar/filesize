@@ -8,14 +8,14 @@
 import Foundation
 
 
-class CommandLineParser {
+public class CommandLineParser {
     
-    enum Result : Error {
+    public enum Result : Error {
         case invalidFormat
         case invalidPath
         case notEnoughArguments
         case noError
-        var localizedDescription: String? {
+        public var message: String? {
             switch self {
             case .notEnoughArguments:
                 return "Invalid number of arguments"
@@ -27,12 +27,12 @@ class CommandLineParser {
         }
     }
     
-    enum Option : String {
+    public enum Option : String {
         case swift
         case objc
         case help
         case limit
-        init?(rawValue : String) {
+        public init?(rawValue : String) {
             guard rawValue.hasPrefix("--") else {
                 return nil
             }
@@ -52,7 +52,7 @@ class CommandLineParser {
             }
         }
         
-        var directoryParserOption : DirectoryParser.FileType? {
+        public var directoryParserOption : DirectoryParser.FileType? {
             switch self {
             case .swift:
                 return .swift
@@ -65,11 +65,11 @@ class CommandLineParser {
     }
     
     let arguments : [String]
-    init(arguments : [String]) {
+    public init(arguments : [String]) {
         self.arguments = arguments
     }
     
-    func parseCommandLine() throws -> (URL,Int,Option?) {
+    public func parseCommandLine() throws -> (URL,Int,Option?) {
         if arguments.count == 2,let limitOption = Option(rawValue: arguments[1]), limitOption == .help {
             throw Result.noError
         }

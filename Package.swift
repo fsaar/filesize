@@ -13,12 +13,17 @@ let package = Package(
         
         .target(
             name: "filesize",
+            dependencies: ["filesizeCore"],
+            path: "Sources/filesize"
+        ),
+        .target(
+            name: "filesizeCore",
             dependencies: [],
-            path: "Sources"
+            path: "Sources/filesizeCore"
         ),
         .testTarget(
             name: "filesizeTests",
-            dependencies: ["filesize"],
+            dependencies: ["filesizeCore"],
             path: "Tests"
         )
     ]

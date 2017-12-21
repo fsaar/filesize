@@ -20,6 +20,20 @@
                ReferencedContainer = "container:filesize.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "filesize::filesizeCore"
+               BuildableName = "filesizeCore.framework"
+               BlueprintName = "filesizeCore"
+               ReferencedContainer = "container:filesize.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

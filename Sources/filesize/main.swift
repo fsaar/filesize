@@ -1,6 +1,6 @@
 import Cocoa
 import Foundation
-
+import filesizeCore
 
 func showHelp(with error: String? = nil) {
     if let error = error {
@@ -17,7 +17,7 @@ Options:
 }
 
 
-FileManager.default.changeCurrentDirectoryPath("/Users/fsaar/Dropbox/Programs/filesize")
+//FileManager.default.changeCurrentDirectoryPath("/Users/fsaar/Dropbox/Programs/filesize")
 let commandLineParser = CommandLineParser(arguments: CommandLine.arguments)
 do {
     let (url,limit,option) = try commandLineParser.parseCommandLine()
@@ -25,7 +25,7 @@ do {
     parser.parse(limit: limit, filetype: option?.directoryParserOption ?? .all)
 }
 catch let error as CommandLineParser.Result {
-    showHelp(with: error.localizedDescription)
+    showHelp(with: error.message)
     exit(0)
 }
 

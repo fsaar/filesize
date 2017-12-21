@@ -8,8 +8,8 @@
 import Foundation
 
 
-class DirectoryParser {
-    enum FileType {
+public class DirectoryParser {
+    public enum FileType {
         case swift
         case objc
         case all
@@ -48,11 +48,11 @@ class DirectoryParser {
     let baseURL : URL
     
     
-    init(with url: URL) {
+    public init(with url: URL) {
         baseURL = url
     }
     
-    func parse(limit : Int,filetype: FileType = .all) {
+    public func parse(limit : Int,filetype: FileType = .all) {
         let errorHandler = { (url : URL, error : Error) -> Bool in
             print("ERROR:\(url) : \(error)")
             return true
