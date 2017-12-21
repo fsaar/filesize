@@ -7,8 +7,8 @@
 
 # filesize
 
-filesize: Tool to list files that have more than <limit> number of lines
-filezie --limit <number> --<Options>
+ffilesize: Tool to list files that have more than <limit> number of lines
+filesize <path> --limit <number> --<Options>
 Options:
 --swift: consider only swift files
 --objc: consider only objc files

@@ -4,7 +4,7 @@ import Foundation
 
 func showHelp(with error: String? = nil) {
     if let error = error {
-        print("ERROR: \(error)\n")
+        print("\nERROR: \(error)\n")
     }
     print("""
 filesize: Tool to list files that have more than <limit> number of lines
@@ -27,7 +27,6 @@ do {
 catch let error as CommandLineParser.Result {
     showHelp(with: error.localizedDescription)
     exit(0)
-  
 }
 
 

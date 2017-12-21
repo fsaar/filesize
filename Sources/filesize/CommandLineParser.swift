@@ -14,7 +14,7 @@ class CommandLineParser {
         case invalidFormat
         case invalidPath
         case notEnoughArguments
-        
+        case noError
         var localizedDescription: String? {
             switch self {
             case .notEnoughArguments:
@@ -69,8 +69,10 @@ class CommandLineParser {
         self.arguments = arguments
     }
     
-    
     func parseCommandLine() throws -> (URL,Int,Option?) {
+        if arguments.count == 2,let limitOption = Option(rawValue: arguments[1]), limitOption == .help {
+            throw Result.noError
+        }
         guard arguments.count >= 4 else {
             throw Result.notEnoughArguments
         }
@@ -81,17 +83,27 @@ class CommandLineParser {
             throw Result.invalidFormat
         }
         let path = arguments[1]
-        let isRelativePath = path.hasPrefix(".") || path.hasPrefix("..")
-        let relativePath = isRelativePath ? URL(fileURLWithPath: FileManager.default.currentDirectoryPath) : nil
-        let url = URL(fileURLWithPath: path, relativeTo: relativePath)
-        var isDirectory = ObjCBool(false)
-        guard FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory),isDirectory.boolValue else {
+        guard let url = url(with: path) else {
             throw Result.invalidPath
         }
         guard arguments.count > 4, let fileTypeOption = Option(rawValue: arguments[4]), Set<Option>([.swift,.objc]).contains(fileTypeOption) else {
             return (url,limit,nil)
         }
         return (url,limit,fileTypeOption)
-        
     }
+}
+
+fileprivate extension CommandLineParser {
+    
+    func url(with path : String) -> URL? {
+        let isRelativePath = path.hasPrefix(".")
+        let relativePath = isRelativePath ? URL(fileURLWithPath: FileManager.default.currentDirectoryPath) : nil
+        let url = URL(fileURLWithPath: path, relativeTo: relativePath)
+        var isDirectory = ObjCBool(false)
+        guard FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory),isDirectory.boolValue else {
+            return nil
+        }
+        return url
+    }
+    
 }
