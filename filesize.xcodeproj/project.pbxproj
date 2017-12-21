@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		563EF6311FE81D870063E1CF /* DirectoryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563EF62F1FE81BD30063E1CF /* DirectoryParser.swift */; };
 		563EF6321FE81D8C0063E1CF /* DirectoryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563EF62F1FE81BD30063E1CF /* DirectoryParser.swift */; };
+		563EF6361FEC02030063E1CF /* CommandLineParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563EF6341FEC01190063E1CF /* CommandLineParser.swift */; };
 		OBJ_18 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_24 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* main.swift */; };
 /* End PBXBuildFile section */
@@ -16,6 +17,7 @@
 /* Begin PBXFileReference section */
 		563EF62F1FE81BD30063E1CF /* DirectoryParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryParser.swift; sourceTree = "<group>"; };
 		563EF6331FEAB6190063E1CF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		563EF6341FEC01190063E1CF /* CommandLineParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineParser.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		"filesize::filesize::Product" /* filesize */ = {isa = PBXFileReference; lastKnownFileType = text; path = filesize; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +74,7 @@
 			children = (
 				OBJ_9 /* main.swift */,
 				563EF62F1FE81BD30063E1CF /* DirectoryParser.swift */,
+				563EF6341FEC01190063E1CF /* CommandLineParser.swift */,
 			);
 			name = filesize;
 			path = Sources/filesize;
@@ -152,6 +155,7 @@
 			files = (
 				563EF6311FE81D870063E1CF /* DirectoryParser.swift in Sources */,
 				OBJ_24 /* main.swift in Sources */,
+				563EF6361FEC02030063E1CF /* CommandLineParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
