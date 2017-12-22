@@ -17,12 +17,16 @@ Options:
 }
 
 
-//FileManager.default.changeCurrentDirectoryPath("/Users/fsaar/Dropbox/Programs/filesize")
+FileManager.default.changeCurrentDirectoryPath("/Users/fsaar/Dropbox/Programs/filesize")
 let commandLineParser = CommandLineParser(arguments: CommandLine.arguments)
 do {
     let (url,limit,option) = try commandLineParser.parseCommandLine()
-    let parser = DirectoryParser(with: url)
-    parser.parse(limit: limit, filetype: option?.directoryParserOption ?? .all)
+    let fileEnumerator =  FileEnumerator(with: url)
+    let parser = DirectoryParser(with: fileEnumerator)
+    let results = parser.parse(limit: limit, filetype: option?.directoryParserOption ?? .all)
+    for (url,lineCount) in results {
+        print("# \(lineCount)\t: \(url.path)")
+    }
 }
 catch let error as CommandLineParser.Result {
     showHelp(with: error.message)
