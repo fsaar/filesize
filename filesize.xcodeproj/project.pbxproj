@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		563EF6721FED367C0063E1CF /* URLEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563EF6701FED35CF0063E1CF /* URLEnumerator.swift */; };
+		563EF6721FED367C0063E1CF /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563EF6701FED35CF0063E1CF /* ContentProvider.swift */; };
 		OBJ_27 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_33 /* CommandLineParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* CommandLineParserTests.swift */; };
 		OBJ_34 /* DirectoryParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* DirectoryParserTests.swift */; };
@@ -57,7 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		563EF6701FED35CF0063E1CF /* URLEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEnumerator.swift; sourceTree = "<group>"; };
+		563EF6701FED35CF0063E1CF /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
 		OBJ_10 /* DirectoryParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryParser.swift; sourceTree = "<group>"; };
 		OBJ_12 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_15 /* CommandLineParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineParserTests.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 			children = (
 				OBJ_9 /* CommandLineParser.swift */,
 				OBJ_10 /* DirectoryParser.swift */,
-				563EF6701FED35CF0063E1CF /* URLEnumerator.swift */,
+				563EF6701FED35CF0063E1CF /* ContentProvider.swift */,
 			);
 			name = filesizeCore;
 			path = Sources/filesizeCore;
@@ -299,7 +299,7 @@
 			files = (
 				OBJ_52 /* CommandLineParser.swift in Sources */,
 				OBJ_53 /* DirectoryParser.swift in Sources */,
-				563EF6721FED367C0063E1CF /* URLEnumerator.swift in Sources */,
+				563EF6721FED367C0063E1CF /* ContentProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

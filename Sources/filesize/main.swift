@@ -21,11 +21,12 @@ FileManager.default.changeCurrentDirectoryPath("/Users/fsaar/Dropbox/Programs/fi
 let commandLineParser = CommandLineParser(arguments: CommandLine.arguments)
 do {
     let (url,limit,option) = try commandLineParser.parseCommandLine()
-    let fileEnumerator =  FileEnumerator(with: url)
-    let parser = DirectoryParser(with: fileEnumerator)
-    let results = parser.parse(limit: limit, filetype: option?.directoryParserOption ?? .all)
-    for (url,lineCount) in results {
-        print("# \(lineCount)\t: \(url.path)")
+    if let fileEnumerator =  FileContentProvider(with: url) {
+        let parser = DirectoryParser(with: fileEnumerator)
+        let results = parser.parse(limit: limit, filetype: option?.directoryParserOption ?? .all)
+        for (path,lineCount) in results {
+            print("# \(lineCount)\t: \(path)")
+        }
     }
 }
 catch let error as CommandLineParser.Result {

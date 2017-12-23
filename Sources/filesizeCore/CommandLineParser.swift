@@ -52,7 +52,7 @@ public class CommandLineParser {
             }
         }
         
-        public var directoryParserOption : DirectoryParser.FileType? {
+        public var directoryParserOption : FileType? {
             switch self {
             case .swift:
                 return .swift

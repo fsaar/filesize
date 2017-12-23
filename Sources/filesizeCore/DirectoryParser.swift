@@ -6,57 +6,50 @@
 //
 
 import Foundation
-
-
-public class DirectoryParser {
-    public enum FileType {
-        case swift
-        case objc
-        case all
-        
-        
-        func filter(url : URL) -> URL? {
-            switch self {
-            case .swift:
-                if isSwiftFile(url: url) {
-                    return url
-                }
-            case .objc:
-                if isObjcFile(url: url) {
-                    return url
-                }
-            case .all:
-                if isObjcFile(url: url) || isSwiftFile(url: url) {
-                    return url
-                }
-            }
-            return nil
-        }
-        
-        private func isSwiftFile(url : URL) -> Bool {
-            let isSwiftFile = url.pathExtension.lowercased() == "swift"
-            return isSwiftFile
-        }
-        
-        private func isObjcFile(url : URL) -> Bool {
-            let isObjcFile = url.pathExtension.lowercased() == "m"
-            return isObjcFile
+public enum FileType {
+    case swift
+    case objc
+    case all
+    
+    
+    func filter(path : String) -> Bool {
+        switch self {
+        case .swift:
+            return isSwiftFile(path: path)
+        case .objc:
+            return isObjcFile(path: path)
             
+        case .all:
+            return self.isObjcFile(path: path) || self.isSwiftFile(path: path)
         }
     }
-    let enumerator : URLEnumerator
     
-    public init(with enumerator : URLEnumerator) {
-        self.enumerator = enumerator
+    private func isSwiftFile(path : String) -> Bool {
+        let isSwiftFile = path.lowercased().hasSuffix(".swift")
+        return isSwiftFile
     }
     
-    public func parse(limit : Int,filetype: FileType = .all) -> [(URL,Int)] {
-        let urls =  enumerator.enumerate().flatMap({ filetype.filter(url: $0) })
-        let lineCounts = urls.map { ($0,(try? String(contentsOf: $0).split(separator: "\n").count) ?? 0)}
-        let filteredCounts = lineCounts.filter { _,lineCount in
-            return lineCount >= limit
-            }
-        return filteredCounts
+    private func isObjcFile(path : String) -> Bool {
+        let isObjcFile = path.lowercased().hasSuffix(".m")
+        return isObjcFile
+        
+    }
+}
+public class DirectoryParser<T : Sequence> where T.Element == (path:String,content:String) {
+    
+    let contentProvider : T
+    
+    public init(with sequence : T)   {
+        self.contentProvider = sequence
+    }
+    
+    public func parse(limit : Int,filetype: FileType = .all) -> [(String,Int)] {    
+        let filteredValues = self.contentProvider.filter { filetype.filter(path: $0.path) }
+        let values =  filteredValues.flatMap { tuple -> (String, Int) in
+            let lineCount =  tuple.content.split(separator: "\n").count
+            return (tuple.path,lineCount)
+            }.filter {  return $1 >= limit }
+        return values
     }
 }
 
