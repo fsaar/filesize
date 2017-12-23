@@ -29,7 +29,6 @@
 		OBJ_44 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* main.swift */; };
 		OBJ_46 /* filesizeCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "filesize::filesizeCore::Product" /* filesizeCore.framework */; };
 		OBJ_52 /* CommandLineParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* CommandLineParser.swift */; };
-		OBJ_53 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* FileType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +57,6 @@
 
 /* Begin PBXFileReference section */
 		563EF6701FED35CF0063E1CF /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
-		OBJ_10 /* FileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileType.swift; sourceTree = "<group>"; };
 		OBJ_12 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_15 /* CommandLineParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineParserTests.swift; sourceTree = "<group>"; };
 		OBJ_16 /* ContentProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProviderTests.swift; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* CommandLineParser.swift */,
-				OBJ_10 /* FileType.swift */,
 				563EF6701FED35CF0063E1CF /* ContentProvider.swift */,
 			);
 			name = filesizeCore;
@@ -298,7 +295,6 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_52 /* CommandLineParser.swift in Sources */,
-				OBJ_53 /* FileType.swift in Sources */,
 				563EF6721FED367C0063E1CF /* ContentProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
