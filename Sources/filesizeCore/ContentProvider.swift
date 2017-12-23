@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class FileContentProvider{
+public class FileContentProvider : Sequence {
     let urls : [URL]
     var currentIndex = 0
     public init?(with baseURL: URL) {
@@ -16,9 +16,7 @@ public class FileContentProvider{
         }
         urls =  enumerator.flatMap({ $0 as? URL })
     }
-}
 
-extension FileContentProvider : Sequence {
     public func makeIterator() -> AnyIterator<(path:String,content:String)> {
         return AnyIterator<(path:String,content:String)> {
             guard self.currentIndex < self.urls.count else {
@@ -30,5 +28,17 @@ extension FileContentProvider : Sequence {
             self.currentIndex += 1
             return value
         }
+    }
+}
+
+extension Sequence where Element == (path:String,content:String) {
+    
+    public func parse(limit : Int,filetype: FileType = .all) -> [(String,Int)] {
+        let filteredValues = self.filter { filetype.filter(path: $0.path) }
+        let values =  filteredValues.flatMap { tuple -> (String, Int) in
+            let lineCount =  tuple.content.split(separator: "\n").count
+            return (tuple.path,lineCount)
+            }.filter {  return $1 >= limit }
+        return values
     }
 }

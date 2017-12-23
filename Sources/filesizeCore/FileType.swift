@@ -35,21 +35,5 @@ public enum FileType {
         
     }
 }
-public class DirectoryParser<T : Sequence> where T.Element == (path:String,content:String) {
-    
-    let contentProvider : T
-    
-    public init(with sequence : T)   {
-        self.contentProvider = sequence
-    }
-    
-    public func parse(limit : Int,filetype: FileType = .all) -> [(String,Int)] {    
-        let filteredValues = self.contentProvider.filter { filetype.filter(path: $0.path) }
-        let values =  filteredValues.flatMap { tuple -> (String, Int) in
-            let lineCount =  tuple.content.split(separator: "\n").count
-            return (tuple.path,lineCount)
-            }.filter {  return $1 >= limit }
-        return values
-    }
-}
+
 
