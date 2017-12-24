@@ -7,9 +7,12 @@
 
 # filesize
 
-ffilesize: Tool to list files that have more than <limit> number of lines
+### Tool to list files that have more than \<limit> number of lines
+
+~~~~ 
 filesize <path> --limit <number> --<Options>
 Options:
---swift: consider only swift files
---objc: consider only objc files
---help: this help
+	--swift: consider only swift files
+	--objc: consider only objc files
+	--help: this help
+~~~~ abin/bash: ((: https://img.shields.io/badge/swift-4.0-orange.svg: syntax error in expression (error token is "://img.shields.io/badge/Swift-4.0-orange.svg")
