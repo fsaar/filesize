@@ -57,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		563EF6701FED35CF0063E1CF /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
+		563EF6731FEFE3F10063E1CF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_12 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_15 /* CommandLineParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineParserTests.swift; sourceTree = "<group>"; };
 		OBJ_16 /* ContentProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProviderTests.swift; sourceTree = "<group>"; };
@@ -140,6 +141,7 @@
 		OBJ_5 /*  */ = {
 			isa = PBXGroup;
 			children = (
+				563EF6731FEFE3F10063E1CF /* README.md */,
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_13 /* Tests */,

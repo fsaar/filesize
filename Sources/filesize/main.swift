@@ -22,7 +22,7 @@ let commandLineParser = CommandLineParser(arguments: CommandLine.arguments)
 do {
     let (url,limit,option) = try commandLineParser.parseCommandLine()
     if let contentProvider =  FileContentProvider(with: url) {
-        let results = contentProvider.parse(limit: limit, filetype: option?.directoryParserOption ?? .all)
+        let results = contentProvider.parse(limit: limit, filetype: option?.directoryParserOption ?? .any)
         for (path,lineCount) in results {
             print("# \(lineCount)\t: \(path)")
         }

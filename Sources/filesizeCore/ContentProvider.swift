@@ -11,7 +11,7 @@ public class FileContentProvider : Sequence {
     public enum FileType {
         case swift
         case objc
-        case all
+        case any
         
         
         func filter(path : String) -> Bool {
@@ -21,7 +21,7 @@ public class FileContentProvider : Sequence {
             case .objc:
                 return isObjcFile(path: path)
                 
-            case .all:
+            case .any:
                 return self.isObjcFile(path: path) || self.isSwiftFile(path: path)
             }
         }
@@ -62,7 +62,7 @@ public class FileContentProvider : Sequence {
 
 extension Sequence where Element == (path:String,content:String) {
     
-    public func parse(limit : Int,filetype: FileContentProvider.FileType = .all) -> [(String,Int)] {
+    public func parse(limit : Int,filetype: FileContentProvider.FileType = .any) -> [(String,Int)] {
         let filteredValues = self.filter { filetype.filter(path: $0.path) }
         let values =  filteredValues.flatMap { tuple -> (String, Int) in
             let lineCount =  tuple.content.split(separator: "\n").count

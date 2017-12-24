@@ -25,9 +25,44 @@ private class MockContentProvider : Sequence{
 }
 
 class DirectoryParserTests : XCTestCase {
-    func testReturnsCorrectNumberOfResults() throws {
+    func testThatItShouldReturnTheCorrectNumberOfResultsForAGivenLimit() throws {
         let provider = MockContentProvider(mockList:  [(".swift","1\n2\n"),(".swift","1\n2\n3\n")])
         let results = provider.parse(limit: 3, filetype: .swift)
         XCTAssert(results.count == 1)
+    }
+    func test2ThatItShouldReturnTheCorrectNumberOfResultsForAGivenLimit() throws {
+        let provider = MockContentProvider(mockList:  [(".swift","1\n2\n"),(".swift","1\n2\n3\n"),(".swift","1\n2\n3\n")])
+        let results = provider.parse(limit: 3, filetype: .swift)
+        XCTAssert(results.count == 2)
+    }
+    func testThatItShouldReturnTheCorrectNumberOfResultsIfFileTypeIsSwift() throws {
+        let provider = MockContentProvider(mockList:  [(".swift","1\n2\n"),(".swift","1\n2\n3\n"),(".m","1\n2\n3\n")])
+        let results = provider.parse(limit: 3, filetype: .swift)
+        XCTAssert(results.count == 1)
+    }
+    func test2tThatItShouldReturnTheCorrectNumberOfResultsIfFileTypeIsSwift() throws {
+        let provider = MockContentProvider(mockList:  [(".swift","1\n2\n"),(".swift","1\n2\n3\n"),(".m","1\n2\n3\n"),(".swift","1\n2\n3\n")])
+        let results = provider.parse(limit: 3, filetype: .swift)
+        XCTAssert(results.count == 2)
+    }
+    func testThatItShouldReturnTheCorrectNumberOfResultsIfFileTypeIsObjC() throws {
+        let provider = MockContentProvider(mockList:  [(".swift","1\n2\n"),(".swift","1\n2\n3\n"),(".m","1\n3\n")])
+        let results = provider.parse(limit: 3, filetype: .objc)
+        XCTAssert(results.count == 0)
+    }
+    func test2tThatItShouldReturnTheCorrectNumberOfResultsIfFileTypeIsObjC() throws {
+        let provider = MockContentProvider(mockList:  [(".swift","1\n2\n"),(".swift","1\n2\n3\n"),(".m","1\n2\n3\n"),(".swift","1\n2\n3\n")])
+        let results = provider.parse(limit: 3, filetype: .objc)
+        XCTAssert(results.count == 1)
+    }
+    func testThatItShouldReturnTheCorrectNumberOfResultsIfFileTypeIsAny() throws {
+        let provider = MockContentProvider(mockList:  [(".swift","1\n2\n"),(".swift","1\n2\n3\n"),(".m","1\n3\n")])
+        let results = provider.parse(limit: 2, filetype: .any)
+        XCTAssert(results.count == 3)
+    }
+    func test2tThatItShouldReturnTheCorrectNumberOfResultsIfFileTypeIsAny() throws {
+        let provider = MockContentProvider(mockList:  [(".swift","1\n2\n"),(".swift","1\n2\n3\n"),(".m","1\n2\n3\n"),(".swift","1\n2\n3\n")])
+        let results = provider.parse(limit: 3, filetype: .any)
+        XCTAssert(results.count == 3)
     }
 }
