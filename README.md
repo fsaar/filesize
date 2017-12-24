@@ -1,5 +1,5 @@
 ![](https://img.shields.io/badge/Swift-4.0-orange.svg)
-[![Travis Build Status](https://travis-ci.org/fsaar/filesize.svg?branch=master)](https://travis-ci.org/fsaar/filesize)
+[![Travis Build Status](https://api.travis-ci.org/fsaar/filesize.svg?branch=master)](https://travis-ci.org/fsaar/filesize)
 [![Bitrise Build Status](https://www.bitrise.io/app/57e558f6294006e4/status.svg?token=DDsEZOktnPuT6q5sZJrbwQ&branch=master)](https://www.bitrise.io/app/57e558f6294006e4)
 [![Code Coverage](https://codecov.io/gh/fsaar/filesize/coverage.svg?branch=master)](https://codecov.io/gh/fsaar/filesize/branch/master)
 [![Code Climate](https://codeclimate.com/github/fsaar/filesize/badges/gpa.svg)](https://codeclimate.com/github/fsaar/filesize)
