@@ -17,7 +17,7 @@ Options:
 }
 
 
-FileManager.default.changeCurrentDirectoryPath("/Users/fsaar/Dropbox/Programs/filesize")
+//FileManager.default.changeCurrentDirectoryPath("/Users/fsaar/Dropbox/Programs/filesize")
 let commandLineParser = CommandLineParser(arguments: CommandLine.arguments)
 do {
     let (url,limit,option) = try commandLineParser.parseCommandLine()
