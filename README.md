@@ -8,11 +8,24 @@
 # filesize
 
 ### Tool to list files that have more than \<limit> number of lines
+### Use it to find technical debt. Often in projects maintained about several years files and classes tend to grow. To find those files in Objective-C that have more than a 1000 lines use
+~~~~
+    fileize . --limit 1000 --objc
+~~~~
+If only Swift files need to be considered use
+~~~~
+    fileize . --limit 1000 --swift
+~~~~
+For Swift and Objective-C files drop the filetype option and just write
+~~~~
+    fileize . --limit 1000
+~~~~
 
+In general the format is as follows
 ~~~~ 
-filesize <path> --limit <number> --<Options>
-Options:
-	--swift: consider only swift files
-	--objc: consider only objc files
-	--help: this help
+    filesize <path> --limit <number> --<Options>
+    Options:
+        --swift: consider only swift files
+        --objc: consider only objc files
+        --help: this help
 ~~~~ 
