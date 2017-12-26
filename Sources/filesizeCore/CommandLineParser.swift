@@ -14,7 +14,6 @@ public class CommandLineParser {
         case invalidFormat
         case invalidPath
         case notEnoughArguments
-        case noError
         public var message: String? {
             switch self {
             case .notEnoughArguments:
@@ -69,9 +68,9 @@ public class CommandLineParser {
         self.arguments = arguments
     }
     
-    public func parseCommandLine() throws -> (URL,Int,Option?) {
-        if arguments.count == 2,let limitOption = Option(rawValue: arguments[1]), limitOption == .help {
-            throw Result.noError
+    public func parseCommandLine() throws -> (URL?,Int?,Option?) {
+        if arguments.count >= 2,let limitOption = Option(rawValue: arguments[1]), limitOption == .help {
+           return (nil,nil,.help)
         }
         guard arguments.count >= 4 else {
             throw Result.notEnoughArguments

@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias FileContentProviderResultType = (path:String,content:String)
+
 public class FileContentProvider : Sequence {
     public enum FileType {
         case swift
@@ -46,8 +48,8 @@ public class FileContentProvider : Sequence {
         urls =  enumerator.flatMap({ $0 as? URL })
     }
 
-    public func makeIterator() -> AnyIterator<(path:String,content:String)> {
-        return AnyIterator<(path:String,content:String)> {
+    public func makeIterator() -> AnyIterator<FileContentProviderResultType> {
+        return AnyIterator<FileContentProviderResultType> {
             guard self.currentIndex < self.urls.count else {
                 return nil
             }
@@ -60,7 +62,7 @@ public class FileContentProvider : Sequence {
     }
 }
 
-extension Sequence where Element == (path:String,content:String) {
+extension Sequence where Element == FileContentProviderResultType {
     
     public func parse(limit : Int,filetype: FileContentProvider.FileType = .any) -> [(String,Int)] {
         let filteredValues = self.filter { filetype.filter(path: $0.path) }
