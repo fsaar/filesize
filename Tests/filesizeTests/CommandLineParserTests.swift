@@ -53,7 +53,7 @@ class CommandLineParserTests : XCTestCase {
     }
     
     func testThatItShouldReturnPathAndLimitIfGiven() {
-        let path = "/Users/fsaar/Dropbox/Programs/filesize"
+        let path = FileManager.default.currentDirectoryPath
         let parser = CommandLineParser(arguments: ["",path,"--limit","100"])
         let tuple = try! parser.parseCommandLine()
         let expectation : CommandlineParserReturnValue = (URL(fileURLWithPath: path),100,nil)
@@ -62,7 +62,7 @@ class CommandLineParserTests : XCTestCase {
     }
     
     func testThatItShouldThrowInvalidFormatIf2ndArgumentNotLimit() {
-        let path = "/Users/fsaar/Dropbox/Programs/filesize"
+        let path = FileManager.default.currentDirectoryPath
         let parser = CommandLineParser(arguments: ["",path,"--somethingelse","100"])
         XCTAssertThrowsError(try parser.parseCommandLine()) { error in
             XCTAssertEqual(error as? CommandLineParser.Result, CommandLineParser.Result.invalidFormat)
@@ -71,7 +71,7 @@ class CommandLineParserTests : XCTestCase {
     }
     
     func testThatItShouldReturnTheCorrectFileRestrictionIfGivenSwift() {
-        let path = "/Users/fsaar/Dropbox/Programs/filesize"
+        let path = FileManager.default.currentDirectoryPath
         let parser = CommandLineParser(arguments: ["",path,"--limit","100","--swift"])
         let tuple = try! parser.parseCommandLine()
         let expectation : CommandlineParserReturnValue = (URL(fileURLWithPath: path),100,.swift)
@@ -80,7 +80,7 @@ class CommandLineParserTests : XCTestCase {
     }
     
     func testThatItShouldReturnTheCorrectFileRestrictionIfGivenObjectiveC() {
-        let path = "/Users/fsaar/Dropbox/Programs/filesize"
+        let path = FileManager.default.currentDirectoryPath
         let parser = CommandLineParser(arguments: ["",path,"--limit","100","--objc"])
         let tuple = try! parser.parseCommandLine()
         let expectation : CommandlineParserReturnValue = (URL(fileURLWithPath: path),100,.objc)
