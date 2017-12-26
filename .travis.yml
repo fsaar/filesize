@@ -2,7 +2,7 @@ language: objective-c
 
 osx_image: xcode9
 script:
-- swift test -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.12" 
+- swift test -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.12"  -Xswiftc -static-stdlib
 - travis_retry swift test -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.12" 
 - bash <(curl -s https://codecov.io/bash)
 
