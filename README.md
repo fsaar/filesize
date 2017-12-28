@@ -30,7 +30,7 @@ In general the format is as follows
         --help: this help
 ~~~~
 
-To build use from source code use
+To build from source code use
 ~~~~
 swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.12"  -Xswiftc -static-stdlib -c release
 ~~~~
