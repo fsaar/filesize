@@ -28,4 +28,9 @@ In general the format is as follows
         --swift: consider only swift files
         --objc: consider only objc files
         --help: this help
-~~~~ 
+~~~~
+
+To build use from source code use
+~~~~
+swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.12"  -Xswiftc -static-stdlib -c release
+~~~~
